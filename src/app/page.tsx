@@ -299,7 +299,6 @@ export default function Home() {
         <section id="experience" className={`accordion-section content-section experience-section${expandedSection === "experience" ? " is-expanded" : ""}`}>
           <AccordionHeading id="experience" label="EXPERIENCE" kicker="EXPERIENCE" index={4} expanded={expandedSection === "experience"} onClick={() => toggleSection("experience")} />
           <div id="experience-panel" className="accordion-panel" aria-labelledby="experience-trigger" hidden={expandedSection !== "experience"}>
-          <p className="source-note">Experience details are retained from the existing résumé-based content and have not been verified against the live portfolio’s expanded Experience panel.</p>
           <div className="experience-list">
             {experience.map((job, index) => (
               <article className="experience-card" key={job.company}>

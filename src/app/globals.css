@@ -107,7 +107,6 @@
 .resume-button{display:inline-flex;align-items:center;gap:12px;margin-top:13px;padding:11px 15px;border:1px solid #b9d0d1;color:#4c898e;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s,transform .2s}
 .resume-button:hover{background:#edf4f4;border-color:#78aaad;transform:translateY(-2px)}
 .resume-button:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
-.source-note{margin:0 0 16px;padding:10px 13px;border-left:2px solid #a9c8ca;background:#f1f4f4;color:#727b80;font-size:10px;line-height:1.55}
 .project-art{isolation:isolate;border:1px solid #e1e5e5;background:#f4f6f6;transition:transform .25s,border-color .25s}
 .project-card:hover .project-art{transform:translateY(-2px);border-color:#c1d4d4}
 .project-art:before{z-index:0;background:linear-gradient(135deg,#f7f8f7,#e8eeee)}
