@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">IncidentIQ investigation workflow illustration</title><desc id="desc">Incident evidence is checked and organized into prioritized hypotheses for investigation.</desc>
+  <rect width="960" height="360" fill="#f4f6f6"/><path d="M0 288H960" stroke="#e1e6e7"/><text x="50" y="54" fill="#838d92" font-family="monospace" font-size="13" letter-spacing="3">CONCEPTUAL WORKFLOW · INCIDENT EVIDENCE</text>
+  <g fill="#fff" stroke="#d5dfe0"><rect x="58" y="116" width="182" height="132" rx="4"/><rect x="302" y="116" width="182" height="132" rx="4"/><rect x="546" y="116" width="182" height="132" rx="4"/><rect x="790" y="116" width="112" height="132" rx="4"/></g>
+  <g fill="#24333a" font-family="Arial,sans-serif" font-size="17" font-weight="600"><text x="84" y="157">Incident</text><text x="327" y="157">Evidence</text><text x="570" y="157">Checks</text><text x="805" y="157">Ranked</text><text x="805" y="179">findings</text></g>
+  <g fill="#728187" font-family="monospace" font-size="11"><text x="84" y="190">reported event</text><text x="327" y="190">logs · metrics</text><text x="327" y="209">deploy history</text><text x="570" y="190">rule-based</text><text x="570" y="209">validation</text></g>
+  <g stroke="#6da5a8" stroke-width="3" fill="none"><path d="M240 182h52m-10-10 10 10-10 10M484 182h52m-10-10 10 10-10 10M728 182h52m-10-10 10 10-10 10"/></g><circle cx="872" cy="223" r="7" fill="#6da5a8"/>
+</svg>

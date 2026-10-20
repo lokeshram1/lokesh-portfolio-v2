@@ -1,0 +1,91 @@
+--- PAGE 1 ---
+LOKESH RAM HARIRAM
+(512)7018465 | lokeshramloka@gmail.com | LinkedIn | GitHub
+SKILLS
+AI/ML & LLM Engineering: Python, LLMs, Generative AI, OpenAI API, Claude API, RAG, AI Agents, Embeddings,
+Vector Search, Tool Calling, Structured Outputs, LLM Evaluation, Guardrails
+AI Application Engineering: Natural Language-to-SQL, RAG Pipelines, Agentic Workflows, Human-in-the-Loop
+Systems, Model Evaluation, FastAPI, REST APIs, JSON Schema, API Integration, Contract Validation
+ML & Data Science: XGBoost, ARIMA, Predictive Modeling, Feature Engineering, Time-Series Forecasting,
+Statistical Analysis, Exploratory Data Analysis
+Cloud & Production Engineering: AWS, Azure, Azure Data Factory, Azure Synapse Analytics, Docker, Kubernetes,
+CI/CD, ETL/ELT, Data Modeling, Data Transformation, PostgreSQL
+Analytics & Visualization: Power BI, DAX, Power Query, KPI Analysis, Dashboard Development
+Engineering & Collaboration: Git, GitHub, Requirements Gathering, Technical Discovery, Stakeholder
+Collaboration, Technical Prototyping, Systems Integration, Solution Design
+PROFESSIONAL EXPERIENCE
+Applied AI/ML Engineer Aug 2025 – Jan 2026
+American College of Emergency Physicians (ACEP), Irving, TX
+ Built AskEMDI, an LLM-powered natural-language-to-SQL platform using Amazon Bedrock and Anthropic
+Claude, enabling emergency physicians and researchers to query structured emergency-medicine data without
+writing SQL.
+ Engineered ETL/ELT pipelines using Azure Data Factory and Azure Synapse Analytics to ingest, cleanse,
+transform, and validate a 23M+ encounter dataset of de-identified clinical data, creating the structured data
+foundation for AskEMDI and research analysis.
+ Built Python and SQL data-quality validation workflows to identify missing values, inconsistent records, and
+clinical coding issues before data reached downstream LLM and analytics workflows, improving data reliability
+for AI-driven analysis.
+ Partnered with clinicians and operations stakeholders to gather requirements, demonstrate prototypes, and
+iterate on query logic and outputs, translating real-world research questions into usable AI workflows for non-
+technical physicians and researchers.
+Research Assistant (Machine Learning) Aug 2024 – May 2025
+SEAR LAB, Arlington, TX
+ Built Python and SQL data pipelines for 500K+ time-series sensor records, covering data cleaning, feature
+engineering, and transformation to produce model-ready datasets for predictive modeling and operational
+analysis.
+ Developed XGBoost and ARIMA models to analyze sensor data, identify drivers of operational performance,
+and generate predictive insights that contributed to a 15% improvement in production efficiency within the
+research environment.
+ Automated data workflows and developed Python/Matplotlib visualizations and Power BI dashboards, reducing
+KPI reporting time by 40% and improving access to operational insights.
+ Partnered with research and engineering stakeholders to define KPI requirements, demoed prototype
+dashboards, and iterated on features and reporting from their feedback, with final dashboards adopted for
+weekly KPI tracking.
+EDUCATION
+The University of Texas at Arlington May 2026
+Master of Science in Information Systems
+Sathyabama University May 2024
+Bachelor of Science in Computer Science
+--- PAGE 2 ---
+PROJECT EXPERIENCE
+Longitudinal Meeting Intelligence & Accountability System
+Tech Stack: Python, Claude API, Embeddings, PostgreSQL, FastAPI, Docker
+ Built a longitudinal meeting-intelligence system using publicly available city council meeting minutes, extracting
+action items, decisions, owners, deadlines, and issue context from recurring sessions and persisting them for
+cross-meeting tracking.
+ Engineered cross-meeting entity resolution using embedding similarity followed by Claude-based verification to
+distinguish newly raised issues from semantically related but distinct historical action items.
+ Developed temporal state tracking to identify overdue, stale, and repeatedly resurfacing issues, maintaining an
+evidence trail across meetings to surface unresolved commitments rather than treating each meeting as an
+isolated document.
+ Built an interactive accountability dashboard and created a manually labeled evaluation set of 75
+meeting/action-item examples to assess action-item extraction and cross-meeting matching quality, analyzing
+false matches and missed links to identify recurring sources of model error.
+E-Commerce Pricing Risk Detection System
+Tech Stack: Python, XGBoost, Sentence Transformers, PostgreSQL, FastAPI, Streamlit, Docker
+ Built a pricing-risk detection system using the Amazon Reviews 2023 raw_meta_Electronics dataset to identify
+potentially erroneous or suspicious product prices using product descriptions, category context, features, and
+price information.
+ Engineered categorical, price-distribution, and semantic features including category-level price deviation,
+relative discount magnitude, product attributes, and Sentence Transformer embeddings of product titles and
+descriptions, using XGBoost to generate product-level pricing-risk scores.
+ Developed a FastAPI scoring service and Streamlit investigation dashboard that prioritizes high-risk products for
+human review, displaying comparable category pricing, product attributes, contributing signals, and model
+explanations for each flagged listing.
+ Created a labeled evaluation benchmark by injecting realistic pricing anomalies into genuine product-price
+records and tuned detection thresholds using precision, recall, false-negative cost, and manual-review volume
+to balance financial risk against investigation workload.
+API Integration & Contract Verification Agent
+Tech Stack: Python, Claude API, Shippo API, FastAPI, Docker, JSON Schema
+ Built an API integration agent using Claude to parse Shippo documentation for 10 selected endpoints,
+generating endpoint clients, request mappings, response schemas, and executable integration tests from
+documented API contracts.
+ Implemented a bounded generate–execute–diagnose–repair workflow that runs generated requests against the
+Shippo test environment, validates responses against expected schemas, and retries once for defined failures
+such as missing required fields, incorrect parameter mappings, and invalid request formats.
+ Engineered contract-validation workflows to compare documented request and response structures with
+observed API behavior, identifying schema mismatches, unexpected response fields, missing parameters, and
+inconsistent error responses across tested endpoints.
+ Developed an endpoint-level verification report that records test outcomes, detected discrepancies, repair
+attempts, unresolved failures, and human-review requirements, providing engineers with an auditable
+integration handoff for unfamiliar third-party APIs.

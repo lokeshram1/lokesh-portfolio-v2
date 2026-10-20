@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">API integration contract workflow illustration</title><desc id="desc">Documentation flows through a generated client and executable checks into a contract report.</desc>
+  <rect width="960" height="360" fill="#f4f6f6"/><path d="M0 288H960" stroke="#e1e6e7"/><text x="50" y="54" fill="#838d92" font-family="monospace" font-size="13" letter-spacing="3">CONCEPTUAL WORKFLOW · API CONTRACTS</text>
+  <g fill="#fff" stroke="#d5dfe0"><rect x="54" y="116" width="174" height="132" rx="4"/><rect x="290" y="116" width="174" height="132" rx="4"/><rect x="526" y="116" width="174" height="132" rx="4"/><rect x="762" y="116" width="144" height="132" rx="4"/></g>
+  <g fill="#24333a" font-family="Arial,sans-serif" font-size="19" font-weight="600"><text x="78" y="160">API docs</text><text x="314" y="160">Generated</text><text x="314" y="184">client</text><text x="551" y="160">Run tests</text><text x="786" y="160">Contract</text><text x="786" y="184">report</text></g>
+  <g stroke="#6da5a8" stroke-width="3" fill="none"><path d="M228 182h48m-10-10 10 10-10 10M464 182h48m-10-10 10 10-10 10M700 182h48m-10-10 10 10-10 10"/></g>
+  <g stroke="#c6d3d4"><path d="M80 204h112M80 220h78M316 212h116M552 204h112M552 220h88M786 210h96"/></g><circle cx="874" cy="224" r="7" fill="#6da5a8"/>
+</svg>

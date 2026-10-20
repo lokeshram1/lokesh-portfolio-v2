@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">AskEMDI natural-language-to-SQL workflow illustration</title><desc id="desc">A research question is translated into SQL, validated, and used to retrieve structured results.</desc>
+  <rect width="960" height="360" fill="#f4f6f6"/><path d="M0 288H960" stroke="#e1e6e7"/><text x="50" y="54" fill="#838d92" font-family="monospace" font-size="13" letter-spacing="3">CONCEPTUAL WORKFLOW · RESEARCH DATA</text>
+  <rect x="58" y="116" width="232" height="132" rx="5" fill="#fff" stroke="#d5dfe0"/><rect x="363" y="116" width="232" height="132" rx="5" fill="#e8f0f0" stroke="#ccdddd"/><rect x="668" y="116" width="232" height="132" rx="5" fill="#fff" stroke="#d5dfe0"/>
+  <g fill="#24333a" font-family="Arial,sans-serif" font-size="18" font-weight="600"><text x="83" y="156">Research question</text><text x="391" y="156">Validated SQL</text><text x="701" y="156">Structured result</text></g>
+  <g fill="#6f7c81" font-family="monospace" font-size="13"><text x="83" y="190">“Compare visits by year”</text><text x="391" y="190">SELECT year, COUNT(*)</text><text x="391" y="212">FROM encounters …</text></g>
+  <g stroke="#6da5a8" stroke-width="3" fill="none"><path d="M290 181h58m-10-10 10 10-10 10M595 181h58m-10-10 10 10-10 10"/></g>
+  <g fill="#d6e3e3"><rect x="701" y="183" width="162" height="10" rx="2"/><rect x="701" y="204" width="118" height="10" rx="2"/><rect x="701" y="225" width="145" height="8" rx="2"/></g>
+</svg>

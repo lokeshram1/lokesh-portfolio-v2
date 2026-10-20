@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Meeting intelligence and accountability workflow illustration</title><desc id="desc">Recurring meeting records are connected over time to commitments and follow-up items.</desc>
+  <rect width="960" height="360" fill="#f4f6f6"/><path d="M0 288H960" stroke="#e1e6e7"/><text x="50" y="54" fill="#838d92" font-family="monospace" font-size="13" letter-spacing="3">CONCEPTUAL WORKFLOW · MEETING RECORDS</text>
+  <path d="M150 189H810" stroke="#9db8ba" stroke-width="2" stroke-dasharray="5 8"/><g fill="#fff" stroke="#d5dfe0"><rect x="65" y="124" width="196" height="126" rx="4"/><rect x="382" y="124" width="196" height="126" rx="4"/><rect x="699" y="124" width="196" height="126" rx="4"/></g>
+  <g fill="#24333a" font-family="Arial,sans-serif" font-size="18" font-weight="600"><text x="91" y="160">Meeting 01</text><text x="408" y="160">Meeting 02</text><text x="725" y="160">Meeting 03</text></g>
+  <g fill="#6f7c81" font-family="monospace" font-size="12"><text x="91" y="188">record · transcript</text><text x="408" y="188">record · transcript</text><text x="725" y="188">record · transcript</text><text x="91" y="220">commitment identified</text><text x="408" y="220">follow-up checked</text><text x="725" y="220">status updated</text></g>
+  <g fill="#5d9fa5"><circle cx="261" cy="189" r="6"/><circle cx="480" cy="189" r="7"/><circle cx="699" cy="189" r="6"/></g>
+</svg>
