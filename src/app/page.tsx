@@ -29,23 +29,47 @@ const { projects, skillGroups, education, writing } = portfolioContent;
 
 const experience = [
   {
+    number: "01",
     title: "Applied AI/ML Engineer",
     company: "American College of Emergency Physicians (ACEP)",
-    date: "Aug 2025 — Jan 2026",
-    bullets: [
+    location: "Irving, TX",
+    date: "August 2025 – January 2026",
+    description: "Built AskEMDI, an LLM-powered natural-language-to-SQL platform using Amazon Bedrock and Anthropic Claude, enabling emergency physicians and researchers to query structured emergency-medicine data without writing SQL.",
+    achievements: ["23M+ encounters processed", "LLM-powered natural-language-to-SQL"],
+    technologies: ["Amazon Bedrock", "Anthropic Claude", "Azure Data Factory", "Azure Synapse", "Python", "SQL"],
+    details: [
       "Built AskEMDI, an LLM-powered natural-language-to-SQL platform using Amazon Bedrock and Anthropic Claude for emergency medicine research.",
       "Engineered Azure Data Factory and Synapse pipelines for a 23M+ encounter dataset, with Python and SQL quality checks before data reached AI and analytics workflows.",
       "Worked with clinicians and operations stakeholders to turn research questions into usable query workflows and iterate on prototypes.",
     ],
   },
   {
+    number: "02",
     title: "Research Assistant (Machine Learning)",
     company: "SEAR Lab",
-    date: "Aug 2024 — May 2025",
-    bullets: [
+    location: "Arlington, TX",
+    date: "August 2024 – May 2025",
+    description: "Built Python and SQL data pipelines for 500K+ time-series sensor records, covering data cleaning, feature engineering, and transformation to produce model-ready datasets for predictive modeling and operational analysis.",
+    achievements: ["500K+ sensor records", "40% less KPI reporting time", "15% production-efficiency improvement"],
+    technologies: ["Python", "SQL", "XGBoost", "ARIMA", "Matplotlib", "Power BI"],
+    details: [
       "Built Python and SQL pipelines for 500K+ time-series sensor records, preparing model-ready data through cleaning, feature engineering, and transformation.",
       "Developed XGBoost and ARIMA models to analyze operational performance, contributing to a 15% improvement in production efficiency in the research environment.",
       "Automated reporting workflows and developed Power BI dashboards, reducing KPI reporting time by 40%.",
+    ],
+  },
+  {
+    number: "03",
+    title: "Operations Analyst",
+    company: "AIESEC",
+    date: "June 2022 – January 2023",
+    description: "Analyzed operational performance data and KPIs using Excel and SQL, identifying process inefficiencies that improved productivity by 15% and reduced operational costs by 10% through data-driven process optimization.",
+    achievements: ["15% productivity improvement", "10% lower operating costs", "95% KPI attainment"],
+    technologies: ["Excel", "SQL", "Google Cloud Platform"],
+    details: [
+      "Analyzed operational performance data and KPIs using Excel and SQL, identifying process inefficiencies that improved productivity by 15% and reduced operational costs by 10% through data-driven process optimization.",
+      "Built KPI dashboards and automated reporting workflows, collaborating with cross-functional teams to achieve 95% KPI attainment and align analytics insights with organizational performance objectives.",
+      "Maintained cloud-based operational datasets on Google Cloud Platform (GCP), ensuring data accuracy, improving accessibility for analytics reporting, and supporting Agile-driven operational initiatives.",
     ],
   },
 ];
@@ -181,6 +205,7 @@ function Hero({
 export default function Home() {
   const [expandedSection, setExpandedSection] = useState<SectionId | null>(null);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [reducedMotion, setReducedMotion] = useState<boolean | null>(null);
 
@@ -204,6 +229,7 @@ export default function Home() {
   const navigateToSection = (id: SectionId) => {
     setExpandedSection(id);
     if (id !== "projects") setExpandedProject(null);
+    if (id !== "experience") setExpandedExperience(null);
     closeMenu();
     scrollToSection(id);
   };
@@ -211,9 +237,11 @@ export default function Home() {
     if (expandedSection === id) {
       setExpandedSection(null);
       if (id === "projects") setExpandedProject(null);
+      if (id === "experience") setExpandedExperience(null);
     } else {
       setExpandedSection(id);
       if (id !== "projects") setExpandedProject(null);
+      if (id !== "experience") setExpandedExperience(null);
     }
     scrollToSection(id);
   };
@@ -297,18 +325,31 @@ export default function Home() {
         </section>
 
         <section id="experience" className={`accordion-section content-section experience-section${expandedSection === "experience" ? " is-expanded" : ""}`}>
-          <AccordionHeading id="experience" label="EXPERIENCE" kicker="EXPERIENCE" index={4} expanded={expandedSection === "experience"} onClick={() => toggleSection("experience")} />
+          <AccordionHeading id="experience" label="EXPERIENCE" kicker="EXPERIENCE" index={1} expanded={expandedSection === "experience"} onClick={() => toggleSection("experience")} />
           <div id="experience-panel" className="accordion-panel" aria-labelledby="experience-trigger" hidden={expandedSection !== "experience"}>
+          <div className="experience-section-intro"><h3>Applied engineering, with outcomes.</h3><p>Building data foundations, applied ML models, and AI workflows with domain and engineering stakeholders.</p></div>
           <div className="experience-list">
-            {experience.map((job, index) => (
-              <article className="experience-card" key={job.company}>
-                <div className="exp-index">0{index + 1}</div>
-                <div className="exp-main"><p className="eyebrow">{job.date}</p><h3>{job.title}</h3><p className="company">{job.company}</p>
-                  <ul>{job.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-                </div>
-                <span className="exp-arrow" aria-hidden="true">↗</span>
-              </article>
-            ))}
+            {experience.map((job) => {
+              const isExpanded = expandedExperience === job.number;
+              return (
+                <article className={`experience-card${isExpanded ? " is-expanded" : ""}`} key={job.number}>
+                  <div className="exp-index">{job.number}</div>
+                  <div className="exp-main">
+                    <h4>{job.title}</h4>
+                    <div className="exp-meta"><span className="company">{job.company}</span><span>{job.date}</span>{"location" in job && <span>{job.location}</span>}</div>
+                    <p className="experience-description">{job.description}</p>
+                    <ul className="experience-achievements">{job.achievements.map((achievement) => <li key={achievement}>{achievement}</li>)}</ul>
+                    <ul className="experience-technologies">{job.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                  </div>
+                  <button className="experience-detail-trigger" id={`experience-details-trigger-${job.number}`} type="button" aria-expanded={isExpanded} aria-controls={`experience-details-${job.number}`} aria-label={`${isExpanded ? "Hide" : "Show"} details for ${job.title}`} onClick={() => setExpandedExperience((current) => current === job.number ? null : job.number)}>
+                    <span className={`accordion-chevron${isExpanded ? " is-expanded" : ""}`} aria-hidden="true" />
+                  </button>
+                  <div className="experience-details" id={`experience-details-${job.number}`} aria-labelledby={`experience-details-trigger-${job.number}`} hidden={!isExpanded}>
+                    <ul>{job.details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
           </div>
         </section>

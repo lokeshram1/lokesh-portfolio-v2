@@ -123,3 +123,28 @@
 .hero-personal{width:min(100%,510px);min-height:3.3em}
 .hero-typewriter{min-width:min(100%,340px);min-height:1.5em}
 @media(max-width:620px){.hero-personal{min-height:4.95em}.hero-typewriter{min-width:0;width:100%;min-height:1.5em}}
+
+/* Experience-only editorial timeline and compact entry disclosures. */
+.experience-section-intro{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid var(--line)}
+.experience-section-intro h3{margin:0 0 7px;font-size:clamp(23px,2.8vw,34px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
+.experience-section-intro p{max-width:660px;margin:0;color:#747a80;font-size:12px;line-height:1.65}
+.experience-card{grid-template-columns:45px minmax(0,1fr) 34px;gap:14px;padding:21px 0}
+.exp-main h4{margin:0 0 5px;font-size:clamp(17px,1.8vw,22px);font-weight:500;letter-spacing:-.025em;line-height:1.25;color:var(--ink)}
+.exp-meta{display:flex;flex-wrap:wrap;gap:4px 13px;margin:0 0 9px;color:#878d92;font-size:10px;line-height:1.5}
+.exp-meta>span+span:before{content:"·";padding-right:13px;color:#abb2b6}
+.exp-meta .company{margin:0;color:#656d73;font-size:10px}
+.experience-description{max-width:760px;margin:0 0 10px;color:#6d7379;font-size:11px;line-height:1.6}
+.exp-main .experience-achievements,.exp-main .experience-technologies{display:flex;flex-wrap:wrap;gap:5px;margin:0;padding:0;list-style:none}
+.exp-main .experience-achievements{margin-bottom:8px}
+.experience-achievements li{padding:5px 8px;background:#edf3f3;color:#4f777b;font-size:9px;line-height:1.25}
+.experience-technologies li{padding:4px 6px;background:#f0f2f4;color:#71777e;font-size:9px;line-height:1.3}
+.experience-detail-trigger{display:grid;place-items:center;width:30px;height:30px;border:1px solid transparent;border-radius:50%;background:transparent;color:#73797e;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.experience-detail-trigger:hover,.experience-detail-trigger:focus-visible{border-color:#c6dada;background:#f1f6f6;color:var(--teal)}
+.experience-detail-trigger:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.experience-detail-trigger .accordion-chevron{width:9px;height:9px}
+.experience-details{grid-column:2/4;padding:16px 0 1px;border-top:1px solid var(--line)}
+.experience-details[hidden]{display:none}
+.experience-details ul{display:grid;gap:9px;margin:0;padding-left:17px;color:#6d7379;font-size:11px;line-height:1.6}
+.experience-details li::marker{color:var(--teal)}
+.experience-card.is-expanded{border-bottom-color:#c5d8d9}
+@media(max-width:620px){.experience-section-intro{margin-bottom:12px;padding-bottom:13px}.experience-section-intro h3{font-size:23px}.experience-section-intro p{font-size:10px}.experience-card{grid-template-columns:25px minmax(0,1fr) auto;gap:8px;padding:16px 0}.experience-description{font-size:10px;line-height:1.55}.experience-details{grid-column:2/4;padding-top:12px}.experience-details ul{font-size:10px}.experience-achievements li,.experience-technologies li{font-size:8px;padding:4px 5px}.exp-meta{font-size:9px;gap:3px 8px}.exp-meta .company{font-size:9px}.experience-detail-trigger{width:27px;height:27px}}
