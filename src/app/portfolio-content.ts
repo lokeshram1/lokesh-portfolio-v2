@@ -1,6 +1,6 @@
 /**
- * Content transcribed from Lokesh's live portfolio and its expanded panels on
- * 2026-10-20. Experience panel details were not exposed during extraction and
+ * Content transcribed from Lokesh's live portfolio and its expanded panels.
+ * Experience panel details were not exposed during extraction and
  * remain in the existing page data until they can be verified.
  */
 export const portfolioContent = {
@@ -206,7 +206,7 @@ export const portfolioContent = {
         {
           heading: "System and implementation",
           bullets: [
-            "Used the Amazon Reviews 2023 electronics metadata dataset.",
+            "Used the Amazon Reviews electronics metadata dataset.",
             "Combined category-level price deviations, relative discounts, product attributes, and Sentence Transformer embeddings of product text as XGBoost features.",
             "Built a FastAPI scoring service and a Streamlit investigation dashboard showing comparable category prices, product attributes, contributing signals, and model explanations.",
             "Created synthetic anomaly labels by injecting realistic anomalies into genuine product-price records.",
@@ -318,12 +318,10 @@ export const portfolioContent = {
     {
       degree: "Master of Science, Information Systems",
       institution: "The University of Texas at Arlington",
-      date: "May 2026",
     },
     {
       degree: "Bachelor of Science, Computer Science",
       institution: "Sathyabama University",
-      date: "May 2024",
     },
   ],
   writingIntro:

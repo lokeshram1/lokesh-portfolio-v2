@@ -1,6 +1,6 @@
 # Lokesh Ram Hariram — Portfolio
 
-A responsive portfolio built with Next.js 16, React 19, and TypeScript. The page uses the reference site's full-screen section navigation, quiet monochrome palette, circular line art, and hover details, with content sourced from Lokesh's résumé.
+A responsive portfolio built with Next.js 16, React 19, and TypeScript. The page uses the reference site's full-screen hero, natural-scroll section navigation, quiet monochrome palette, circular line art, and hover details, with content sourced from Lokesh's résumé.
 
 ## Local development
 
