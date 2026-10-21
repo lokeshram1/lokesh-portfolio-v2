@@ -1,55 +1,36 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "Lokesh Ram Hariram | AI/ML Engineer & Data Engineer";
-const description =
-  "Portfolio of Lokesh Ram Hariram, an AI/ML Engineer and Data Engineer building useful machine learning and data systems.";
-
-function getProductionUrl(): URL | undefined {
-  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (!value) return undefined;
-
-  try {
-    const url = new URL(value);
-    return url.protocol === "https:" ? url : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
-const productionUrl = getProductionUrl();
-const shareImage = productionUrl
-  ? new URL("/profile-social-preview.jpg", productionUrl).toString()
-  : undefined;
+const title = "Lokesh Hariram | AI/ML Engineer & Data Engineer";
+const description = "AI/ML Engineer & Data Engineer building useful machine learning and data systems.";
+const productionUrl = new URL("https://lokesh-portfolio-v2-wjfl.vercel.app/");
+const shareImage = new URL("/profile.jpg", productionUrl).toString();
 
 export const metadata: Metadata = {
-  ...(productionUrl ? { metadataBase: productionUrl } : {}),
+  metadataBase: productionUrl,
   title,
   description,
-  ...(productionUrl ? { alternates: { canonical: productionUrl.toString() } } : {}),
+  alternates: { canonical: productionUrl.toString() },
   openGraph: {
     type: "website",
     title,
     description,
-    ...(productionUrl ? { url: productionUrl.toString() } : {}),
-    ...(shareImage
-      ? {
-          images: [
-            {
-              url: shareImage,
-              width: 1200,
-              height: 630,
-              alt: "Lokesh Ram Hariram, AI/ML Engineer and Data Engineer",
-            },
-          ],
-        }
-      : {}),
+    url: productionUrl.toString(),
+    images: [
+      {
+        url: shareImage,
+        width: 622,
+        height: 714,
+        type: "image/jpeg",
+        alt: "Lokesh Hariram",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    ...(shareImage ? { images: [shareImage] } : {}),
+    images: [{ url: shareImage, width: 622, height: 714, type: "image/jpeg", alt: "Lokesh Hariram" }],
   },
 };
 

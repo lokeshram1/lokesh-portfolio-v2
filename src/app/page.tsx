@@ -42,6 +42,51 @@ function activeSlide(track: HTMLDivElement | null) {
   }, 0);
 }
 
+type CarouselDrag = { pointerId: number; startX: number; startScrollLeft: number; moved: boolean };
+
+function startCarouselDrag(
+  event: React.PointerEvent<HTMLDivElement>,
+  drag: { current: CarouselDrag | null },
+  suppressClick: { current: boolean },
+) {
+  if (event.pointerType !== "mouse" || event.button !== 0) return;
+  if (event.target instanceof Element && event.target.closest("a, button")) return;
+  suppressClick.current = false;
+  drag.current = { pointerId: event.pointerId, startX: event.clientX, startScrollLeft: event.currentTarget.scrollLeft, moved: false };
+  event.currentTarget.setPointerCapture(event.pointerId);
+}
+
+function moveCarouselDrag(event: React.PointerEvent<HTMLDivElement>, drag: { current: CarouselDrag | null }) {
+  const active = drag.current;
+  if (!active || active.pointerId !== event.pointerId) return;
+  const distance = event.clientX - active.startX;
+  if (!active.moved && Math.abs(distance) < 5) return;
+  active.moved = true;
+  event.currentTarget.classList.add("is-dragging");
+  event.preventDefault();
+  event.currentTarget.scrollLeft = active.startScrollLeft - distance;
+}
+
+function stopCarouselDrag(
+  event: React.PointerEvent<HTMLDivElement>,
+  drag: { current: CarouselDrag | null },
+  suppressClick: { current: boolean },
+) {
+  const active = drag.current;
+  if (!active || active.pointerId !== event.pointerId) return;
+  suppressClick.current = active.moved;
+  drag.current = null;
+  event.currentTarget.classList.remove("is-dragging");
+  if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+}
+
+function suppressDraggedClick(event: React.MouseEvent<HTMLDivElement>, suppressClick: { current: boolean }) {
+  if (!suppressClick.current) return;
+  event.preventDefault();
+  event.stopPropagation();
+  suppressClick.current = false;
+}
+
 const experience = [
   {
     number: "01",
@@ -116,6 +161,7 @@ function SectionHeading({
 
 function CarouselNav({
   label,
+  controlsId,
   count,
   index,
   onSelect,
@@ -123,6 +169,7 @@ function CarouselNav({
   onNext,
 }: {
   label: string;
+  controlsId: string;
   count: number;
   index: number;
   onSelect: (index: number) => void;
@@ -131,25 +178,25 @@ function CarouselNav({
 }) {
   return (
     <div className="carousel-controls" aria-label={`${label} carousel controls`}>
-      <button type="button" onClick={onPrevious} aria-label={`Previous ${label}`} className="carousel-arrow">←</button>
+      <button type="button" onClick={onPrevious} aria-controls={controlsId} aria-label={`Previous ${label}`} className="carousel-arrow">←</button>
       <div className="carousel-dots" role="group" aria-label={`Choose ${label}`}>
-        {Array.from({ length: count }, (_, i) => <button type="button" key={i} className={`carousel-dot${i === index ? " is-active" : ""}`} aria-label={`Go to ${label} ${i + 1} of ${count}`} aria-current={i === index ? "true" : undefined} onClick={() => onSelect(i)} />)}
+        {Array.from({ length: count }, (_, i) => <button type="button" key={i} aria-controls={controlsId} className={`carousel-dot${i === index ? " is-active" : ""}`} aria-label={`Go to ${label} ${i + 1} of ${count}`} aria-current={i === index ? "true" : undefined} onClick={() => onSelect(i)} />)}
       </div>
       <span className="carousel-count" aria-live="polite">{String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}</span>
-      <button type="button" onClick={onNext} aria-label={`Next ${label}`} className="carousel-arrow">→</button>
+      <button type="button" onClick={onNext} aria-controls={controlsId} aria-label={`Next ${label}`} className="carousel-arrow">→</button>
     </div>
   );
 }
 
+function CarouselHint() {
+  return <p className="carousel-hint">Swipe or drag to explore <span aria-hidden="true">→</span></p>;
+}
+
 type HeroProps = {
-  menuOpen: boolean;
-  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   reducedMotion: boolean | null;
 };
 
 function Hero({
-  menuOpen,
-  setMenuOpen,
   reducedMotion,
 }: HeroProps) {
   const [typedPhrase, setTypedPhrase] = useState("");
@@ -209,12 +256,13 @@ function Hero({
           <span className="headline-measure" aria-hidden="true">{widestPhrase}</span>
           <span className="headline-live" aria-hidden="true">{visiblePhrase}{reducedMotion === false && <span className="cursor">|</span>}</span>
         </h1>
-        <nav className={`hero-nav${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
-          {sections.map(({ id, label }, index) => (
-            <a key={id} aria-label={`${String(index + 1).padStart(2, "0")} / ${label}`} href={`#${id}`} onClick={() => setMenuOpen(false)}>{String(index + 1).padStart(2, "0")} / {label}</a>
-          ))}
+        <nav className="hero-nav" aria-label="Main navigation">
+          <ul>
+            {sections.map(({ id, label }, index) => (
+              <li key={id}><a aria-label={`${String(index + 1).padStart(2, "0")} / ${label}`} href={`#${id}`}>{String(index + 1).padStart(2, "0")} / {label}</a></li>
+            ))}
+          </ul>
         </nav>
-        <button className="menu-toggle" onClick={() => setMenuOpen((open) => !open)} aria-expanded={menuOpen} aria-label="Toggle navigation"><span /><span /></button>
       </div>
       <a className="home-button" href="#hero" aria-label="Back to home"><span aria-hidden="true">⌂</span></a>
     </section>
@@ -222,13 +270,16 @@ function Hero({
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [reducedMotion, setReducedMotion] = useState<boolean | null>(null);
   const [projectIndex, setProjectIndex] = useState(0);
   const [experienceIndex, setExperienceIndex] = useState(0);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const projectTrack = useRef<HTMLDivElement>(null);
   const experienceTrack = useRef<HTMLDivElement>(null);
+  const projectDrag = useRef<CarouselDrag | null>(null);
+  const experienceDrag = useRef<CarouselDrag | null>(null);
+  const projectSuppressClick = useRef(false);
+  const experienceSuppressClick = useRef(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -238,7 +289,6 @@ export default function Home() {
     return () => media.removeEventListener("change", update);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
   const motionReduced = reducedMotion !== false;
 
   const carouselKeys = (event: React.KeyboardEvent<HTMLDivElement>, index: number, count: number, track: React.RefObject<HTMLDivElement | null>) => {
@@ -261,11 +311,11 @@ export default function Home() {
             );
           })}
         </div>
-        <a className="contact-shortcut" href="#contact" onClick={closeMenu}><span className="envelope" aria-hidden="true">✉</span> Get in touch</a>
+        <a className="contact-shortcut" href="#contact"><span className="envelope" aria-hidden="true">✉</span> Get in touch</a>
       </header>
 
       <main className="page-scroll">
-        <Hero key={reducedMotion === null ? "motion-pending" : reducedMotion ? "reduced-motion" : "motion-enabled"} menuOpen={menuOpen} setMenuOpen={setMenuOpen} reducedMotion={reducedMotion} />
+        <Hero key={reducedMotion === null ? "motion-pending" : reducedMotion ? "reduced-motion" : "motion-enabled"} reducedMotion={reducedMotion} />
 
         <section id="about" className="portfolio-section content-section about-section">
           <SectionHeading id="about" label="ABOUT ME" kicker="ABOUT ME" index={1} />
@@ -287,7 +337,8 @@ export default function Home() {
           <SectionHeading id="projects" label="FEATURED PROJECTS" kicker="FEATURED PROJECTS" index={2} />
           <div id="projects-panel" className="section-content" aria-labelledby="projects-heading">
           <div className="carousel-shell">
-          <div className="project-list carousel-track" ref={projectTrack} role="region" aria-label="Featured projects" tabIndex={0} onKeyDown={(event) => carouselKeys(event, projectIndex, projects.length, projectTrack)} onScroll={(event) => setProjectIndex(activeSlide(event.currentTarget))}>
+          <CarouselHint />
+          <div id="projects-carousel" className="project-list carousel-track" ref={projectTrack} role="region" aria-label="Featured projects" tabIndex={0} onKeyDown={(event) => carouselKeys(event, projectIndex, projects.length, projectTrack)} onScroll={(event) => setProjectIndex(activeSlide(event.currentTarget))} onPointerDown={(event) => startCarouselDrag(event, projectDrag, projectSuppressClick)} onPointerMove={(event) => moveCarouselDrag(event, projectDrag)} onPointerUp={(event) => stopCarouselDrag(event, projectDrag, projectSuppressClick)} onPointerCancel={(event) => stopCarouselDrag(event, projectDrag, projectSuppressClick)} onClickCapture={(event) => suppressDraggedClick(event, projectSuppressClick)}>
             {projects.map((project) => (
               <article className="project-card" key={project.number}>
                 <div className={`project-art art-${project.motif}`}><Image src={project.image} alt={`Conceptual workflow illustration: ${project.diagram}`} fill sizes="(max-width: 620px) 92vw, (max-width: 900px) 32vw, 24vw"/></div>
@@ -299,7 +350,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <CarouselNav label="project" count={projects.length} index={projectIndex} onSelect={(next) => goToSlide(projectTrack.current, next, motionReduced)} onPrevious={() => goToSlide(projectTrack.current, (projectIndex + projects.length - 1) % projects.length, motionReduced)} onNext={() => goToSlide(projectTrack.current, (projectIndex + 1) % projects.length, motionReduced)} />
+          <CarouselNav label="project" controlsId="projects-carousel" count={projects.length} index={projectIndex} onSelect={(next) => goToSlide(projectTrack.current, next, motionReduced)} onPrevious={() => goToSlide(projectTrack.current, (projectIndex + projects.length - 1) % projects.length, motionReduced)} onNext={() => goToSlide(projectTrack.current, (projectIndex + 1) % projects.length, motionReduced)} />
           </div>
           </div>
         </section>
@@ -325,7 +376,8 @@ export default function Home() {
           <div id="experience-panel" className="section-content" aria-labelledby="experience-heading">
           <div className="experience-section-intro"><h3>Applied engineering, with outcomes.</h3><p>Building data foundations, applied ML models, and AI workflows with domain and engineering stakeholders.</p></div>
           <div className="carousel-shell">
-          <div className="experience-list carousel-track" ref={experienceTrack} role="region" aria-label="Experience" tabIndex={0} onKeyDown={(event) => carouselKeys(event, experienceIndex, experience.length, experienceTrack)} onScroll={(event) => setExperienceIndex(activeSlide(event.currentTarget))}>
+          <CarouselHint />
+          <div id="experience-carousel" className="experience-list carousel-track" ref={experienceTrack} role="region" aria-label="Experience" tabIndex={0} onKeyDown={(event) => carouselKeys(event, experienceIndex, experience.length, experienceTrack)} onScroll={(event) => setExperienceIndex(activeSlide(event.currentTarget))} onPointerDown={(event) => startCarouselDrag(event, experienceDrag, experienceSuppressClick)} onPointerMove={(event) => moveCarouselDrag(event, experienceDrag)} onPointerUp={(event) => stopCarouselDrag(event, experienceDrag, experienceSuppressClick)} onPointerCancel={(event) => stopCarouselDrag(event, experienceDrag, experienceSuppressClick)} onClickCapture={(event) => suppressDraggedClick(event, experienceSuppressClick)}>
             {experience.map((job) => {
               return (
                 <article className="experience-card" key={job.number}>
@@ -345,7 +397,7 @@ export default function Home() {
               );
             })}
           </div>
-          <CarouselNav label="experience" count={experience.length} index={experienceIndex} onSelect={(next) => goToSlide(experienceTrack.current, next, motionReduced)} onPrevious={() => goToSlide(experienceTrack.current, (experienceIndex + experience.length - 1) % experience.length, motionReduced)} onNext={() => goToSlide(experienceTrack.current, (experienceIndex + 1) % experience.length, motionReduced)} />
+          <CarouselNav label="experience" controlsId="experience-carousel" count={experience.length} index={experienceIndex} onSelect={(next) => goToSlide(experienceTrack.current, next, motionReduced)} onPrevious={() => goToSlide(experienceTrack.current, (experienceIndex + experience.length - 1) % experience.length, motionReduced)} onNext={() => goToSlide(experienceTrack.current, (experienceIndex + 1) % experience.length, motionReduced)} />
           </div>
           </div>
         </section>

@@ -261,3 +261,90 @@ html,body{max-width:100%;overflow-x:clip}
 .social-icon{width:22px;height:22px}
 @media(max-width:620px){.social-icon{width:21px;height:21px}}
 @media(max-width:360px){.social-icon{width:20px;height:20px}}
+
+/* Clear, always-visible navigation and more discoverable portfolio carousels. */
+.hero-nav{display:block;max-width:min(96vw,1160px);flex:none}
+.hero-nav ul{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;gap:clamp(9px,1.25vw,19px);margin:0;padding:0;list-style:none}
+.hero-nav li{min-width:0}
+.hero-nav a{display:flex;align-items:center;min-height:44px;color:#5e666d;font-size:clamp(9px,.76vw,11px);font-weight:500;letter-spacing:.055em;white-space:nowrap}
+.hero-nav a:hover,.hero-nav a.active{color:#24313a}
+.carousel-hint{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0 1px 9px;color:#657077;font-size:11px;letter-spacing:.035em}
+.carousel-hint span{color:var(--teal);font-size:16px;line-height:1}
+.carousel-track{cursor:grab;user-select:none;-webkit-user-select:none}
+.carousel-track.is-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none}
+.carousel-track img{-webkit-user-drag:none;user-drag:none}
+.carousel-track>.project-card,.carousel-track>.experience-card{flex-basis:92%;width:92%}
+.carousel-track{padding-right:8%;scroll-padding-left:0}
+.project-list.carousel-track>.project-card{grid-template-columns:minmax(175px,.62fr) minmax(0,1.5fr) minmax(104px,.3fr);min-height:215px;padding:22px 0}
+.project-copy h3{font-size:clamp(20px,1.8vw,26px);line-height:1.25}
+.project-copy p{font-size:13px;line-height:1.6}
+.project-stack li{font-size:10px;padding:5px 7px}
+.project-links a{font-size:11px;min-height:44px}
+.carousel-track>.experience-card{min-height:235px;padding:25px 0}
+.exp-main h4{font-size:clamp(19px,1.75vw,25px)}
+.experience-description{font-size:13px;line-height:1.65}
+.exp-meta,.exp-meta .company{font-size:11px}
+.experience-achievements li,.experience-technologies li{font-size:10px;padding:6px 8px}
+.experience-details ul{font-size:12px}
+.carousel-controls{gap:17px;padding-top:14px}
+.carousel-arrow{width:48px;height:48px;border-color:#aab6b8;background:#fff;color:#35454b;font-size:21px;box-shadow:0 2px 8px #1d30300c}
+.carousel-arrow:hover{color:#285f64;border-color:#67989c;background:#f6fafa}
+.carousel-dot{width:28px;height:28px}
+.carousel-dot:after{inset:11px}
+.carousel-count{font-size:10px;color:#5f686e}
+@media(max-width:1100px) and (min-width:621px){
+  .hero-nav ul{gap:clamp(6px,.75vw,10px)}
+  .hero-nav a{font-size:9px;letter-spacing:.015em}
+  .carousel-track>.project-card,.carousel-track>.experience-card{flex-basis:94%;width:94%}
+  .carousel-track{padding-right:6%}
+  .project-list.carousel-track>.project-card{grid-template-columns:minmax(132px,.55fr) minmax(0,1.5fr) minmax(86px,.3fr);gap:14px}
+  .project-copy h3{font-size:clamp(18px,2vw,23px)}
+  .project-copy p{font-size:12px}
+  .experience-description{font-size:12px}
+}
+@media(max-width:760px) and (min-width:621px){
+  .hero-nav ul{flex-wrap:wrap;row-gap:3px;column-gap:11px}
+  .hero-nav a{min-height:40px;font-size:8px}
+}
+@media(max-width:620px){
+  .hero{padding:62px 20px 45px}
+  .hero-content{transform:none}
+  .hero-nav{position:static;left:auto;top:auto;transform:none;visibility:visible;opacity:1;width:min(100%,350px);max-width:100%;min-width:0;margin:10px auto 0;padding:0;border:0;background:transparent;box-shadow:none;transition:none}
+  .hero-nav ul{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:1px}
+  .hero-nav li{width:100%;border-bottom:1px solid #e5e8e8}
+  .hero-nav li:last-child{border-bottom:0}
+  .hero-nav a{width:100%;min-height:44px;padding:0 4px;color:#505b61;font-size:10px;letter-spacing:.07em;white-space:normal;text-align:left}
+  .menu-toggle{display:none!important}
+  .carousel-hint{justify-content:flex-start;margin:0 0 7px;font-size:10px}
+  .carousel-track{gap:12px;padding-right:9%;}
+  .carousel-track>.project-card,.carousel-track>.experience-card{flex-basis:91%;width:91%;}
+  .project-list.carousel-track>.project-card{grid-template-columns:minmax(0,1fr);gap:8px;min-height:0;padding:15px 0 19px}
+  .project-copy h3{font-size:clamp(17px,4.8vw,20px)}
+  .project-copy p{font-size:12px;line-height:1.6}
+  .project-stack li{font-size:9px}
+  .project-links a{font-size:10px}
+  .carousel-track>.experience-card{grid-template-columns:30px minmax(0,1fr);gap:8px;min-height:0;padding:17px 0}
+  .exp-main h4{font-size:clamp(17px,4.8vw,20px)}
+  .experience-description{font-size:11px;line-height:1.6}
+  .experience-achievements li,.experience-technologies li{font-size:9px;padding:5px 6px}
+  .exp-meta,.exp-meta .company{font-size:10px}
+  .experience-details ul{font-size:11px}
+  .carousel-controls{gap:7px;padding-top:9px}
+  .carousel-arrow{width:44px;height:44px;font-size:19px}
+  .carousel-dot{width:25px;height:28px}
+  .carousel-dot:after{inset:11px 9px}
+  .carousel-count{min-width:42px;font-size:9px}
+}
+@media(max-width:360px){
+  .hero-nav{width:100%}
+  .hero-nav a{font-size:9px}
+  .carousel-track>.project-card,.carousel-track>.experience-card{flex-basis:90%;width:90%}
+  .carousel-track{padding-right:10%}
+  .carousel-hint{font-size:9px}
+  .carousel-controls{gap:5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .carousel-track{scroll-behavior:auto}
+  .carousel-track.is-dragging{scroll-snap-type:x proximity}
+  .hero-nav a{transition:none}
+}
