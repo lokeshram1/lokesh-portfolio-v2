@@ -148,3 +148,99 @@
 .experience-details li::marker{color:var(--teal)}
 .experience-card.is-expanded{border-bottom-color:#c5d8d9}
 @media(max-width:620px){.experience-section-intro{margin-bottom:12px;padding-bottom:13px}.experience-section-intro h3{font-size:23px}.experience-section-intro p{font-size:10px}.experience-card{grid-template-columns:25px minmax(0,1fr) auto;gap:8px;padding:16px 0}.experience-description{font-size:10px;line-height:1.55}.experience-details{grid-column:2/4;padding-top:12px}.experience-details ul{font-size:10px}.experience-achievements li,.experience-technologies li{font-size:8px;padding:4px 5px}.exp-meta{font-size:9px;gap:3px 8px}.exp-meta .company{font-size:9px}.experience-detail-trigger{width:27px;height:27px}}
+
+/* Tight viewport guardrails: preserve the layout while giving touch controls room. */
+html,body{max-width:100%;overflow-x:clip}
+.page-scroll{max-width:100%;overscroll-behavior-y:contain}
+.snap-section,.accordion-panel,.project-card,.project-copy,.about-copy,.experience-card{min-width:0;max-width:100%}
+.accordion-trigger:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+.project-detail-trigger{min-width:44px;min-height:44px;justify-content:center}
+.project-links a{min-height:44px;display:inline-flex;align-items:center;padding:0 4px}
+.experience-detail-trigger{width:44px;height:44px}
+.resume-button,.email-link,.contact-profiles a{display:inline-flex;min-height:44px;align-items:center;justify-content:center}
+@media(max-width:900px){
+  .content-section{min-width:0}
+  .about-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:5%}
+  .project-card{grid-template-columns:minmax(0,.55fr) minmax(0,1.7fr) minmax(0,.4fr)}
+  .project-copy h3,.writing-card h3,.exp-main h4{overflow-wrap:anywhere}
+}
+@media(max-width:620px){
+  .topbar{height:66px;padding:0 12px}
+  .social-links{gap:8px}
+  .social-links a{width:44px;height:44px}
+  .social-icon{width:17px;height:17px}
+  .contact-shortcut{min-height:44px;gap:7px;font-size:9px;letter-spacing:.04em}
+  .contact-shortcut .envelope{font-size:19px}
+  .hero{padding:66px 15px 78px}
+  .hero-content{max-width:100%;min-width:0}
+  .hero-eyebrow{letter-spacing:.24em;padding-left:.24em;font-size:9px}
+  .hero h1{max-width:100%;font-size:clamp(32px,9vw,42px);overflow-wrap:anywhere}
+  .hero-personal{max-width:100%;font-size:12px;overflow-wrap:anywhere}
+  .hero-typewriter{max-width:100%;font-size:10px;overflow:hidden}
+  .hero-typewriter .headline-measure,.hero-typewriter .headline-live{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+  .hero-nav{max-width:100%;min-width:0;gap:8px 12px;padding:10px 12px}
+  .hero-nav a{min-height:44px;display:inline-flex;align-items:center;white-space:normal}
+  .menu-toggle{width:44px;height:44px}
+  .home-button{width:44px;height:44px;bottom:16px}
+  .accordion-section{padding-left:clamp(16px,6vw,23px);padding-right:clamp(16px,6vw,23px)}
+  .accordion-trigger{grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:17px 0;min-height:82px}
+  .accordion-trigger .section-kicker{max-width:100%;font-size:8px;letter-spacing:.1em;overflow-wrap:anywhere}
+  .accordion-heading-title{max-width:100%;font-size:clamp(19px,6vw,25px);letter-spacing:.055em;line-height:1.12;white-space:normal;overflow-wrap:anywhere}
+  .accordion-panel{padding:22px 0 42px;overflow-wrap:anywhere}
+  .about-layout{grid-template-columns:minmax(0,1fr);gap:20px}
+  .about-portrait{min-height:210px}
+  .about-copy h3{font-size:clamp(25px,7vw,34px);overflow-wrap:anywhere}
+  .about-copy>p:not(.eyebrow){font-size:13px;line-height:1.7}
+  .education-list{flex-wrap:wrap;gap:18px 24px}
+  .education-list>div{min-width:0;max-width:100%}
+  .skill-group-card{overflow-wrap:anywhere}
+  .skill-group-card li,.project-stack li,.experience-achievements li,.experience-technologies li{max-width:100%;overflow-wrap:anywhere;word-break:normal}
+  .skill-group-card li,.project-stack li{font-size:9px;line-height:1.4;padding:5px 6px}
+  .project-card{grid-template-columns:minmax(0,1fr);min-width:0}
+  .project-art{width:100%;max-width:100%;height:auto;aspect-ratio:2.7/1}
+  .project-copy{min-width:0}
+  .project-copy h3{font-size:clamp(15px,4.5vw,17px);line-height:1.3}
+  .project-copy p{font-size:11px;line-height:1.55;overflow-wrap:anywhere}
+  .project-stack li{font-size:9px}
+  .project-links{width:100%;gap:6px 10px}
+  .project-links a{white-space:normal;font-size:10px;overflow-wrap:anywhere}
+  .project-detail-trigger{min-width:44px;min-height:44px;font-size:10px}
+  .project-detail-panel{min-width:0}
+  .project-detail-block p,.project-detail-block ul{overflow-wrap:anywhere}
+  .experience-section-intro h3{font-size:clamp(21px,6.2vw,25px);line-height:1.2}
+  .experience-section-intro p{font-size:11px;line-height:1.6}
+  .experience-card{grid-template-columns:30px minmax(0,1fr) 44px;gap:6px;padding:17px 0}
+  .experience-card>*{min-width:0}
+  .experience-description{font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+  .experience-achievements li,.experience-technologies li{font-size:9px;line-height:1.4;padding:5px 6px}
+  .exp-meta{font-size:10px;line-height:1.55}
+  .experience-detail-trigger{width:44px;height:44px}
+  .experience-details{grid-column:2/4;min-width:0}
+  .experience-details ul{font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+  .writing-list{grid-template-columns:minmax(0,1fr)}
+  .writing-card h3{font-size:17px;overflow-wrap:anywhere}
+  .writing-card p{font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+  .contact-content{width:100%;max-width:100%}
+  .contact-content .section-heading{width:100%;max-width:100%}
+  .contact-content h3{max-width:100%;font-size:clamp(32px,9vw,45px);overflow-wrap:anywhere}
+  .contact-description{max-width:100%;font-size:12px}
+  .contact-content .contact-profiles{gap:4px 12px}
+  .contact-content footer{font-size:9px;line-height:1.6;overflow-wrap:anywhere}
+  .contact-panel footer{left:auto;right:auto}
+}
+@media(max-width:360px){
+  .topbar{padding:0 9px}
+  .social-links{gap:4px}
+  .contact-shortcut{font-size:8px;gap:5px}
+  .hero{padding-left:12px;padding-right:12px}
+  .hero-eyebrow{font-size:8px;letter-spacing:.16em;padding-left:.16em}
+  .hero h1{font-size:32px}
+  .accordion-section{padding-left:16px;padding-right:16px}
+  .accordion-heading-title{font-size:19px;letter-spacing:.035em}
+  .project-art{aspect-ratio:2.4/1}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .page-scroll{scroll-snap-type:y proximity}
+  .hero-network{opacity:.2}
+}
