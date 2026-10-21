@@ -13,16 +13,13 @@ const socialLinks = [...profileLinks, { label: "Email", href: portfolioContent.l
 const heroEyebrow = "AI/ML ENGINEER · DATA ENGINEER";
 const headlinePhrases = ["Hi, I'm Lokesh.", "I like morning runs.", "I turn ideas into working tools.", "Getting lost in a good book.", "I'm always curious to build."];
 
-const sections = [
-  { id: "about", label: "ABOUT ME", kicker: "ABOUT ME" },
-  { id: "projects", label: "FEATURED PROJECTS", kicker: "FEATURED PROJECTS" },
-  { id: "skills", label: "SKILLS", kicker: "SKILLS" },
-  { id: "experience", label: "EXPERIENCE", kicker: "EXPERIENCE" },
-  { id: "education", label: "EDUCATION", kicker: "EDUCATION" },
-  { id: "writing", label: "TECHNICAL WRITING", kicker: "TECHNICAL WRITING" },
-  { id: "contact", label: "CONTACT", kicker: "CONTACT" },
+const primaryNavigation = [
+  { id: "about", label: "About Me" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
 ] as const;
-type SectionId = (typeof sections)[number]["id"];
+type SectionId = "about" | "projects" | "skills" | "experience" | "education" | "writing" | "contact";
 const { projects, skillGroups, education, writing } = portfolioContent;
 
 function goToSlide(track: HTMLDivElement | null, index: number, reducedMotion: boolean) {
@@ -258,8 +255,8 @@ function Hero({
         </h1>
         <nav className="hero-nav" aria-label="Main navigation">
           <ul>
-            {sections.map(({ id, label }, index) => (
-              <li key={id}><a aria-label={`${String(index + 1).padStart(2, "0")} / ${label}`} href={`#${id}`}>{String(index + 1).padStart(2, "0")} / {label}</a></li>
+            {primaryNavigation.map(({ id, label }) => (
+              <li key={id}><a href={`#${id}`}>{label}</a></li>
             ))}
           </ul>
         </nav>

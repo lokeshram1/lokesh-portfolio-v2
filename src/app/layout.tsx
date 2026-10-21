@@ -4,7 +4,7 @@ import "./globals.css";
 const title = "Lokesh Hariram | AI/ML Engineer & Data Engineer";
 const description = "AI/ML Engineer & Data Engineer building useful machine learning and data systems.";
 const productionUrl = new URL("https://lokesh-portfolio-v2-wjfl.vercel.app/");
-const shareImage = new URL("/profile.jpg", productionUrl).toString();
+const shareImage = new URL("/profile-social-preview.jpg", productionUrl).toString();
 
 export const metadata: Metadata = {
   metadataBase: productionUrl,
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: shareImage,
-        width: 622,
-        height: 714,
+        width: 1200,
+        height: 630,
         type: "image/jpeg",
         alt: "Lokesh Hariram",
       },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: [{ url: shareImage, width: 622, height: 714, type: "image/jpeg", alt: "Lokesh Hariram" }],
+    images: [{ url: shareImage, width: 1200, height: 630, type: "image/jpeg", alt: "Lokesh Hariram" }],
   },
 };
 
